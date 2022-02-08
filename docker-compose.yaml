@@ -1,0 +1,43 @@
+version: '3'
+services:
+  EN-0:
+    hostname: EN-0
+    image: klaytn/klaytn:latest
+    ports:
+      - '32321:32323'
+      - '8551:8551'
+      - '61001:61001'
+      - '50501:50505'
+    entrypoint: /bin/sh
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    networks:
+      app_net:
+        ipv4_address: 172.16.239.10
+    volumes:
+      - ./:/klaytn
+    restart: "no"
+  EN-1:
+    hostname: EN-1
+    image: klaytn/klaytn:latest
+    ports:
+      - '32322:32323'
+      - '8552:8551'
+      - '61002:61001'
+      - '50502:50505'
+    entrypoint: /bin/sh
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    networks:
+      app_net:
+        ipv4_address: 172.16.239.11
+    volumes:
+      - ./:/klaytn
+    restart: "no"
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.239.0/24
