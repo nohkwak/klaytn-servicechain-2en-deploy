@@ -140,7 +140,6 @@ $ kscn attach --datadir ~/data
 
 ### 앵커링 시작 
 ```
-앵커링을 시작한다. 
 $ kscn attach --datadir ~/data
 > subbridge.anchoring(true)
 true
