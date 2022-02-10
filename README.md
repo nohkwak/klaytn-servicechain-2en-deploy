@@ -88,18 +88,12 @@ $ ken attach --datadir /data
 ```
 
 
-### 중지
-```
-$ kscnd stop
-```
-
-
 
 ## SCN 설정 정보 업데이트
 ### KNI 정보 업데이트 
 EN이 아니라 SCN의 /data/main-bridges.json 파일에 위의 KNI 정보와 IP 및 Port 정보를 업데이트 한다. 
 ```
-["kni://...@[198.168:0:16]:50501?discport=0"]
+["kni://...@198.168.0.16:50501?discport=0"]
 ```
 
 ### conf 파일 업데이트 
@@ -121,6 +115,21 @@ Shutting down kscnd: Killed
 $ kscnd start
 Starting kscnd: OK
 ```
+kscnd stop이 제대로 동작 안 할 경우 ps, kill로 프로세스를 종료시킴 
+```
+$ ps
+PID   USER     TIME  COMMAND
+    1 root      0:00 /bin/sh
+    7 root      0:00 bash
+   38 root      1h20 /klaytn-docker-pkg/bin/kscn --nodiscover --metrics --prometheus --multichannel --rpc --rpcapi klay,subbridge --rpcport 8551 --rpcaddr 0.0.0.0 --rpccorsdomain *
+   53 root      2:03 kscn attach --datadir /data
+   70 root      0:00 bash
+  174 root      0:00 vi testkey1
+  196 root      0:00 bash
+  217 root      0:00 ps
+$ kill -9 38
+```
+
 
 ### EN 연결 여부 확인 
 subbridge.peers.length를 검사하여 SCN이 EN에 연결되어 있는지 확인한다. 
