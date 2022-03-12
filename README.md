@@ -26,14 +26,14 @@ $ docker-compose up
 $ docker ps
    Name       Command   State                                                             Ports                                                          
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-ken2_EN-0_1   /bin/sh   Up      0.0.0.0:32321->32323/tcp, 32323/udp, 0.0.0.0:50501->50505/tcp, 0.0.0.0:61001->61001/tcp, 0.0.0.0:8551->8551/tcp, 8552/tcp
-ken2_EN-1_1   /bin/sh   Up      0.0.0.0:32322->32323/tcp, 32323/udp, 0.0.0.0:50502->50505/tcp, 0.0.0.0:61002->61001/tcp, 0.0.0.0:8552->8551/tcp, 8552/tcp
+ken2_EN-01_1   /bin/sh   Up      0.0.0.0:32321->32323/tcp, 32323/udp, 0.0.0.0:50501->50505/tcp, 0.0.0.0:61001->61001/tcp, 0.0.0.0:8551->8551/tcp, 8552/tcp
+ken2_EN-02_1   /bin/sh   Up      0.0.0.0:32322->32323/tcp, 32323/udp, 0.0.0.0:50502->50505/tcp, 0.0.0.0:61002->61001/tcp, 0.0.0.0:8552->8551/tcp, 8552/tcp
 ```
 
 ### 접속 방법
 ```
-$ sudo docker exec -it ken2_EN-0_1 bash
-$ sudo docker exec -it ken2_EN-1_1 bash
+$ sudo docker exec -it ken2_EN-01_1 bash
+$ sudo docker exec -it ken2_EN-02_1 bash
 ```
 
 
@@ -104,8 +104,6 @@ SC_SUB_BRIDGE=1
 ...
 SC_PARENT_CHAIN_ID=1001
 ...
-SC_TX_PERIOD=10
-...
 ```
 
 ### SCN 재부팅 
@@ -147,9 +145,11 @@ $ kscn attach --datadir ~/data
 "0x......"
 ```
 
-### 앵커링 시작 
+### 앵커링 제어 및 정보 
 ```
 $ kscn attach --datadir ~/data
+> subbridge.anchoring(false)
+false
 > subbridge.anchoring(true)
 true
 > subbridge.latestAnchoredBlockNumber

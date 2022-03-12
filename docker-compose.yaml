@@ -1,7 +1,7 @@
 version: '3'
 services:
-  EN-0:
-    hostname: EN-0
+  EN-1:
+    hostname: EN-01
     image: klaytn/klaytn:latest
     ports:
       - '32321:32323'
@@ -15,10 +15,10 @@ services:
       app_net:
         ipv4_address: 172.16.239.10
     volumes:
-      - ./:/klaytn
+      - ./:/data
     restart: "no"
-  EN-1:
-    hostname: EN-1
+  EN-2:
+    hostname: EN-02
     image: klaytn/klaytn:latest
     ports:
       - '32322:32323'
@@ -32,7 +32,7 @@ services:
       app_net:
         ipv4_address: 172.16.239.11
     volumes:
-      - ./:/klaytn
+      - ./:/data
     restart: "no"
 networks:
   app_net:
